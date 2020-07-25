@@ -1,0 +1,17 @@
+<% provide(:title, 'ジャンル一覧') %>
+<h1>ジャンル一覧</h1>
+<div class= genre-box>
+  <table>
+    <tr>
+      <th>name</th><th>memo</th><th></th>
+    </tr>
+    <% @artgenre.each do |gen| %>
+    <tr>
+      <td><%= gen.name %></td>
+      <td><%= gen.memo %></td>
+      <td><a href= "/artgenres/<%= gen.id %>/edit">編集する</a></td>
+    </tr>
+    <% end %>
+  </table>
+  <p><a href="/artgenres/add">新規作成>></a></p>
+</div>

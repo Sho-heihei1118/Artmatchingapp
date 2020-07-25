@@ -1,0 +1,45 @@
+<li id="picture-<%= picture.id %>">
+  <div class= "artframe">
+    <div class= "artcrafts">
+      <a href= <%= picture.picture_url %> class="model">
+      <%= image_tag(picture.picture_url) %>
+      </a>
+    </div>
+    <div class="art_title">
+      <%= picture.pic_title %>
+    </div>
+    <div class="art_description">
+      <%= picture.pic_description %>
+    </div>
+    <div class="art_genres">
+      <!--%= picture.artgenre_id %-->
+      <!--% render @artgenres %-->
+      <% picture.genre_pictures.each do |pic_genre| %>
+        <%= pic_genre.artgenre.name %>
+      <% end %>
+    </div>
+    <div class="art_created_day">
+      <%= picture.pic_created_date.strftime("%Y年%m月%d日") %>
+    </div>
+    <div class="picture__info">
+      <% if current_user?(picture.user) %>
+        <!--%= link_to "edit", picture, edit_picture_path(picture) %-->
+        <%= link_to "delete", picture, method: :delete, data: { confirm: "本当に削除しますか？" } %>
+      <% end %>
+    </div>
+  </div>
+</li>
+<script>
+$(function(){
+  $("body").append("<div id='glayLayer'></div><div id='overLayer'></div>");
+  $("#glayLayer").click(function(){
+      $(this).hide();
+      $("#overLayer").hide();
+      });
+      $("a.model").click(function(){
+        $("#glayLayer").show();
+        $("#overLayer").show().html("<img src='"+$(this).attr("href")+"'>");
+        return false;
+      });
+    });
+</script>

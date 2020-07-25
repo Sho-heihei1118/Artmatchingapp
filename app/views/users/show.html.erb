@@ -1,0 +1,29 @@
+<% provide(:title, @user.name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= gravatar_for @user %>
+        <%= @user.name %>
+      </h1>
+      <h2>アーティスト経歴</h2>
+        <div class="art_carreer">
+          <%= @user.carreer %>
+        </div>
+    </section>
+    <div class="genre_add">
+      <% if current_user.admin? && !current_user?(@user.admin) %>
+        <%= link_to "ジャンルの一覧表示・追加", artgenres_path %>
+      <% end %>
+    </div>
+  </aside>
+  <div class="col-md-8">
+    <% if @user.pictures.any? %>
+      <h3><%= @user.name %> さんのアート作品は <%= @user.pictures.count %> 点あります。</h3>
+      <ol class="user-arts">
+        <%= render @pictures %>
+      </ol>
+      <%= will_paginate @pictures %>
+    <% end %>
+  </div>
+</div>

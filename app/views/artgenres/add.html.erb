@@ -1,0 +1,25 @@
+<% provide(:title, 'ジャンル追加') %>
+<h1>ジャンル追加</h1>
+<% if @artgenre.errors.any? %>
+<ul>
+  <% @artgenre.errors.full_messages.each do |err| %>
+    <li><%= err %></li>
+  <% end %>
+</ul>
+<% end %>
+<table>
+  <%= form_for(@artgenre, url:{controller:'artgenres', action:'add'}) do |f| %>
+  <tr>
+    <th>name</th>
+    <td><%= f.text_field :name %></td>
+  </tr>
+  <tr>
+    <th>memo</th>
+    <td><%= f.text_field :memo %></td>
+  </tr>
+  <tr>
+    <th></th>
+    <td><%= f.submit "送信" %></td>
+  </tr>
+  <% end %>
+</table>

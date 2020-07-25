@@ -1,0 +1,51 @@
+<% provide(:title, 'みんなのギャラリー') %>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+
+<div class= gallery_genre>
+   <table>
+      <tr>
+         <th>ジャンル一覧</th>
+      </tr>
+      <% @artgenres.each do |gen| %>
+      <tr>
+         <td>
+         <%= link_to gen.name, artgenre_path(gen.id) %>
+         </td>
+      </tr>
+      <% end %>
+   </table>
+</div>
+<div class= search_area>
+   <%= form_tag(users_path,:method => 'get') do %>
+      <%= text_field_tag :search,"",class: 'search_space',placeholder: "作品名や関連ワード" %>
+      <!--%= submit_tag 'Search', :pic_title => nil, :class=>"search_btn" %-->
+      <%= button_tag type: 'submit', :pic_title => nil, class: 'search_btn' do %>
+        <i class="fas fa-search"></i>
+      <% end %>
+   <% end %>
+</div>
+<p style="clear:both;"></p>
+<div class= col-md-12>
+   <h1>みんなのギャラリー</h1>
+<div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 50, "gutter": 3, "fitWidth": true }'>
+   <!--% @random_users.each do |user| %-->
+      <!--% user.pictures.each do |pic| %-->
+      <% @random_pics.each do |pic| %>
+         <div class="grid-item">
+            <p class="image">
+            <%= link_to image_tag(pic.picture_url),pic.user if pic.picture.present? %>
+            </p>
+            <p class= picture_title>
+            <%= pic.pic_title %>
+            </p>
+            <%= link_to pic.user.name, pic.user %>
+            <% if current_user.admin? && !current_user?(pic.user) %>
+             | <%= link_to "delete",pic.user,method: :delete, data: { confirm: "本当に削除しますか？" } %>
+             <% end %>
+         </div>
+      <% end %>
+   <!--% end %-->
+</div>
+</div>
+
+<!--%= will_paginate @pictures %-->

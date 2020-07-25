@@ -1,0 +1,48 @@
+<% if logged_in? %>
+  <div class="row">
+    <aside class="col-md-4">
+      <section class="user_info">
+        <%= render 'shared/user_info' %>
+      </section>
+      <div class="picture_add">
+        <!--%= render 'shared/picture_form' %-->
+        <%= link_to "投稿作品の追加", new_picture_path %>
+      </div>
+    </aside>
+    <div class="col-md-12">
+      <h3>投稿中の作品</h3>
+      <%= render 'shared/feed' %>
+    </div>
+  </div>
+<% else %>
+  <div id= home_main>
+    <div class= "top_image01">
+      <%= image_tag 'designroom.jpg',:size => '530x650' %>
+    </div>
+    <div class= main_text>
+      <p class= lead_en>
+        <span class= en_text>
+          <span>CONNECTING</span>
+        </span>
+        <br>
+        <span class= en_text>
+          <span>ARTISTS</span>
+        </span>
+        <br>
+        <span class= en_text>
+          <span>AND</span>
+        </span>
+        <br>
+        <span class= en_text>
+          <span>CONSUMER</span>
+        </span>
+      </p>
+    </div>
+    <div class= login-btn-area>
+      <%= link_to "会員登録する(無料)", signup_path, class: "btn-signup" %>
+      <div class= btn-login>
+        <%= link_to "ログインはこちらから", login_path %>
+      </div>
+    </div>
+  </div>
+<% end %>

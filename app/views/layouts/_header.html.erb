@@ -1,0 +1,73 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<header>
+  <div class= "container">
+    <div class= logo>
+    <%= link_to image_tag("logo.png", alt: "Painter Match"), root_path, id: "logo_img" %>
+    </div>
+    <nav class="header_nav_manu">
+      <div class= header_serch_form>
+      </div>
+      <ul class="header_nav_ul">
+        <li class="nav_item">
+          <%= link_to "ホーム", root_path %>
+          <i class="fas fa-home fa-lg my-blue"></i>
+        </li>
+        <li class="nav_item">
+          <%= link_to "FAQ", help_path %>
+          <i class="fas fa-lightbulb fa-lg my-blue"></i>
+        </li>
+        <% if logged_in? %>
+         <li class="nav_item">
+           <%= link_to "ギャラリー", users_path %>
+           <i class="fas fa-images fa-lg my-blue"></i>  
+         </li>
+          <li class="dropdown nav_item">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              アカウント <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "プロフィール", current_user %></li>
+              <li><%= link_to "設定編集", edit_user_path(current_user) %></li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "ログアウト", logout_path, method: :delete %>
+              </li>
+            </ul>
+          </li>
+        <% else %>
+          <li class="nav_item"><%= link_to "ログイン", login_path %></li>
+        <% end %>
+        <li class="nav_item">
+          <%= link_to "このサイトについて", about_path %>
+          <i class="fas fa-mountain fa-lg my-blue"></i>
+        </li>
+        <li class="nav_item">
+          <%= link_to "お問い合せ", contact_path %>
+          <i class="fab fa-telegram-plane fa-lg my-blue"></i>
+          </li>            
+      </ul>
+    </nav>
+  </div>
+  <!--p class ="num">スクロールの値 | <span id="scrollValue"--><!--/span--><!--/p-->
+  <!--div class ="backtotop">
+    <!--i class="fas fa-arrow-circle-up"></i>
+  <!--/div-->
+</header>
+
+<script>
+    $(function(){
+        $(window).scroll(function(){
+            var value = $(this).scrollTop();
+            $("#scrollValue").text(value);
+            if(value > 1400){
+              $('.fa-arrow-circle-up').animate({opacity: 1},800);
+            }else{
+              $('.fa-arrow-circle-up').animate({opacity: 0},800);
+            }
+        });
+    });
+</script>
+

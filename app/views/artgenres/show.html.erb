@@ -1,0 +1,28 @@
+<% provide(:title, 'ジャンル') %>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<div class = col-md-12>
+  <h1>ジャンルが <%= @artgenre.name %> の作品一覧</h1>
+  <div class="grid" data-masonry='{ "itemSelector": ".grid-item", "columnWidth": 110, "gutter": 5, "fitWidth": true }'>
+    <% @artgenre.genre_pictures.each do |gen_pic| %>
+      <div class="grid-item">
+        <p class="image">
+        <%= link_to image_tag(gen_pic.picture.picture_url),gen_pic.picture.user if gen_pic.picture.present? %>
+        </p>
+        <p class= picture_title>
+        <%= gen_pic.picture.pic_title %>
+        </p>
+        <%= link_to gen_pic.picture.user.name, gen_pic.picture.user %>
+        <% if current_user.admin? && !current_user?(gen_pic.picture.user) %>
+               | <%= link_to "delete",gen_pic.picture.user,method: :delete, data: { confirm: "本当に削除しますか？" } %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<!--div class="row"-->
+  <!--aside class="col-md-4"-->
+    <!--section class="artgenre_form"-->
+      <!--%= render 'shared/artgenre_form' %-->
+    <!--/section-->
+  <!--/aside-->
+<!--/div-->

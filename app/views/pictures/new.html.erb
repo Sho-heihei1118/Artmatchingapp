@@ -1,0 +1,42 @@
+<% provide(:title, '作品の追加') %>
+<h1>掲載する作品の追加</h1>
+
+<%= form_for(@picture) do |f| %>
+  <%= render 'shared/error_messages', object: f.object %>
+  
+  <div class="field">
+    <%= f.label :pic_title, '作品のタイトル' %>
+    <%= f.text_area :pic_title, placeholder: "Compose new Artcraft title...", class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :picture, '作品の画像' %>
+    <%= f.file_field :picture, class: 'form-control' %>
+  </div>
+  <div class="field">
+    <%= f.label :pic_description, '作品の説明(何を表現しているかなどアピールポイント)' %>
+    <%= f.text_area :pic_description, placeholder: "Compose new Artcraft description...", class: 'form-control' %>
+  </div>
+  <div class='input-group date datepicker'>
+    <%= f.label :pic_created_date, '作品の完成日' %>   
+    <%= f.text_field :pic_created_date, class: 'form-control' %>
+    <span class="input-group-addon">
+      <span class="fa fa-calendar"></span>
+    </span>
+  </div>
+  <div class="field">
+    <%= f.label :artgenre_ids, '作品のジャンル' %>
+    <%= f.collection_check_boxes(:artgenre_ids, Artgenre.all, :id, :name) %>
+      <!--%= b.label { b.check_box + b.text } %-->
+  </div>
+  <%= f.submit "Post", class: "btn btn-primary" %>
+<% end %>
+
+
+<script type="text/javascript">
+$('#picture_file').bind('change', function() {
+  var size_in_megabytes = this.files[0].size/1024/1024;
+  if (size_in_megabytes > 1) {
+    alert('Maximum file size is 5MB. Please choose a smaller file.');
+  }
+});
+</script>

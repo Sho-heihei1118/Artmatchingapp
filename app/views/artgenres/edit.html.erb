@@ -1,0 +1,17 @@
+<% provide(:title, 'ジャンル編集') %>
+<h1>ジャンル編集</h1>
+<p>「<%= @artgenre.name %>」ジャンルの編集</p>
+
+<div class="edit_form">
+  <%= form_for(@artgenre) do |f| %>
+    <%= render 'shared/error_messages', object: f.object %>
+
+    <%= f.label :ジャンル名 %>
+    <%= f.text_field :name, class: 'form-control' %>
+
+    <%= f.label :ジャンルの説明 %>
+    <%= f.text_field :memo, class: 'form-control' %>
+
+    <%= f.submit "送信", class: "btn btn-primary" %>
+  <% end %>
+</div>
