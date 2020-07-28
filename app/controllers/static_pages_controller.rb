@@ -1,9 +1,8 @@
 class StaticPagesController < ApplicationController
   def home
-    if logged_in?
+    if logged_in? #ログイン状態時のホーム画面
       @picture = current_user.pictures.build
       @feed_items = current_user.feed.paginate(page: params[:page])
-#      @picture.genre_pictures.build
     end
   end
 

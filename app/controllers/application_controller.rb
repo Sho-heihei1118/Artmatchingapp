@@ -9,9 +9,9 @@ class ApplicationController < ActionController::Base
   # ログイン済みユーザーかどうか確認
   def logged_in_user
     unless logged_in?
-      store_location
+      store_location #フレンドリーフォワーディングsessions_helper参照
       flash[:danger] = "Please log in."
-      redirect_to login_url
+      redirect_to login_url　#データ更新/削除が必要な場合はredirect_to
     end
   end
 end

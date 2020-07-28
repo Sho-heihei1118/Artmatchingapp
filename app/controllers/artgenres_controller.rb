@@ -1,14 +1,12 @@
 class ArtgenresController < ApplicationController
   
-  before_action :admin_user, only: [:add,:edit]
+  #before_action :admin_user, only: [:add,:edit] 管理者権限なしでジャンル追加編集を行えるようコメントアウト
     
-  def index
-    #@artgenre = Artgenre.new
-    #@artgenre = current_user.artgenres.build
+  def index #ジャンルの一覧表示
     @artgenre = Artgenre.all
   end
 
-  def add
+  def add #ジャンルの追加
     @artgenre = Artgenre.new
     if request.post? then
       @artgenre = Artgenre.create artgenre_params
@@ -16,48 +14,32 @@ class ArtgenresController < ApplicationController
     end
   end
 
-  def show
+  def show #各ジャンルの絵の一覧表示
     @artgenre = Artgenre.find(params[:id])
-   # @pictures = @user.pictures.paginate(page: params[:page])
   end
   
-#  def create
-#    @genre = current_user.artgenres.build(artgenre_params)
-#    @genre = Artgenre.new
-#    if @genre.save
-#      flash[:success] = "アート情報がアップデートされました。"
-#      redirect_to '/artgenres'
-#    else
-#      @feed_items = []
-#      render 'index'
-#    end
-#  end
-
-  def edit
+  def edit #ジャンルの編集ページ
     @artgenre = Artgenre.find(params[:id])
-#    if request.patch? then
-#      @artgenre.update artgenre_params
-#      redirect_to '/artgenres'
-#    end  
   end
   
-  def update
+  def update #ジャンルの更新
     @artgenre = Artgenre.find(params[:id])
     if @artgenre.update_attributes(artgenre_params)
       flash[:success] = "ジャンルが更新されました"
-      redirect_to @artgenre
+      redirect_to @artgenre #データ更新/削除が必要な場合はredirect_to
     else
-      render 'edit'
+      render 'edit' #ログインや入力形式に失敗した場合などはrender
     end
   end
   
   private
   
+  　# ジャンルのストロングパラメータ
     def artgenre_params
       params.require(:artgenre).permit(:name, :memo)
     end
   
-    # 管理者かどうか確認
+    # 管理者かどうか確認(#トップでコメントアウト済みのため動作しない)
     def admin_user
       redirect_to(root_url) unless current_user.admin?
     end

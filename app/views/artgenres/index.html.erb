@@ -9,9 +9,12 @@
     <tr>
       <td><%= gen.name %></td>
       <td><%= gen.memo %></td>
-      <td><a href= "/artgenres/<%= gen.id %>/edit">編集する</a></td>
+      <!--% if current_user.admin? && !current_user?(@user.admin) %-->
+        <td><a href= "/artgenres/<%= gen.id %>/edit">編集する</a></td>
+      <!--% end %-->
     </tr>
     <% end %>
   </table>
   <p><a href="/artgenres/add">新規作成>></a></p>
+  <%= link_to "ジャンルの新規作成", "/artgenres/add" %>
 </div>

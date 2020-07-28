@@ -6,7 +6,6 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @pictures = @user.pictures.paginate(page: params[:page])
-#    @artgenres = @pictures.artgenres
   end
   
   def new
@@ -29,7 +28,7 @@ class UsersController < ApplicationController
   
   def update
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+      flash[:success] = "プロフィールを更新しました"
       redirect_to @user
     else
       render 'edit'
@@ -50,13 +49,13 @@ class UsersController < ApplicationController
   
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
+    flash[:success] = "ユーザーを消去しました"
     redirect_to users_url
   end
   
   private
   
-    def user_params
+    def user_params #ストロングパラメータ
       params.require(:user).permit(:name,:email,:carreer,:password,:password_confirmation,:picture)
     end
     

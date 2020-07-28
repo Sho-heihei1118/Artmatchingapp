@@ -26,7 +26,9 @@
   <div class="field">
     <%= f.label :artgenre_ids, '作品のジャンル' %>
     <%= f.collection_check_boxes(:artgenre_ids, Artgenre.all, :id, :name) %>
-      <!--%= b.label { b.check_box + b.text } %-->
+  </div>
+  <div class="genre_add">
+    <%= link_to "ジャンルの一覧表示・追加", artgenres_path %>
   </div>
   <%= f.submit "Post", class: "btn btn-primary" %>
 <% end %>

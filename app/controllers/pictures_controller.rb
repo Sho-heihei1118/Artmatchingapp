@@ -2,12 +2,12 @@ class PicturesController < ApplicationController
   before_action :logged_in_user, only: [:create,:edit,:update,:destroy]
   before_action :correct_user, only: :destroy
   
-  def new
+  def new #アート作品投稿ページ
     @picture = Picture.new
     @genres = @picture.genre_pictures
   end
   
-  def create
+  def create #アート作品投稿
     @picture = current_user.pictures.build(picture_params)
     if @picture.save
       flash[:success] = "アート情報がアップデートされました。"
@@ -19,11 +19,11 @@ class PicturesController < ApplicationController
     logger.debug @picture.errors.inspect #logger#
   end
   
-  def edit
+  def edit #アート作品編集ページ
     @picture = Picture.find(params[:id])
   end
 
-  def update
+  def update　#アート作品編集
     @picture = Picture.find(params[:id])
     if @picture.update_attributes(picture_params)
       flash[:success] = "Picture updated"
@@ -33,20 +33,20 @@ class PicturesController < ApplicationController
     end
   end
   
-  def destroy
+  def destroy　#アート作品削除
     @picture.destroy
-    flash[:success] = "Your Art picture deleted"
+    flash[:success] = "あなたのアート作品を1件消去しました"
     redirect_to request.referrer || user_pictures_path(current_user) 
   end
   
 
   private
 
-    def picture_params
+    def picture_params #ストロングパラメータ
       params.require(:picture).permit(:pic_title, :picture, :pic_description, :pic_created_date,{ :artgenre_ids=> [] })
     end
 
-    def correct_user
+    def correct_user #ユーザー確認
       @picture = current_user.pictures.find_by(id: params[:id])
       redirect_to user_pictures_path(current_user) if @picture.nil?
     end
