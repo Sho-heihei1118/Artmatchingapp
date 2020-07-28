@@ -34,13 +34,12 @@ class ArtgenresController < ApplicationController
   
   private
   
-  　# ジャンルのストロングパラメータ
-    def artgenre_params
+  
+    def artgenre_params # ジャンルのストロングパラメータ
       params.require(:artgenre).permit(:name, :memo)
     end
   
-    # 管理者かどうか確認(#トップでコメントアウト済みのため動作しない)
-    def admin_user
+    def admin_user # 管理者かどうか確認(#トップでコメントアウト済みのため動作しない)
       redirect_to(root_url) unless current_user.admin?
     end
 end
