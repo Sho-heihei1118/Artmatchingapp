@@ -54,7 +54,7 @@ li,ul {
 .top_image01 {
   overflow: hidden;
   position: relative;
-  width:530px;
+  width: 60%;
 //  background-image:url(designroom.jpg);             /* 画像のURLを指定       */
 //  background-repeat:  no-repeat;                /* 画像の繰り返しを指定  */              
 //  max-width:300px;                                   /* 横幅のサイズを指定    */
@@ -86,8 +86,9 @@ li,ul {
 
 .main_text {
   position:absolute;
-  top: 40%;
-  left: 78%;
+  top: 10%;
+  left: 50%;
+  width: 40%;
 }
 
 .en_text {
@@ -122,9 +123,9 @@ li,ul {
 }
 
 .lead_en {
-  -ms-transform: translate(-50%,-50%);
-  -webkit-transform: translate(-50%,-50%);
-  transform: translate(-50%,-50%);
+  //-ms-transform: translate(-50%,-50%);
+  //-webkit-transform: translate(-50%,-50%);
+  //transform: translate(-50%,-50%);
   margin:0;
   padding:0;
 }
@@ -424,7 +425,7 @@ input {
   position:relative;
 }
 .otoiawase-coverimg {
-  background: linear-gradient(-45deg, rgba(0, 121, 145, .5), rgba(120, 255, 214, .37));
+// background: linear-gradient(-45deg, rgba(0, 121, 145, .5), rgba(120, 255, 214, .37));
 //  background: linear-gradient(-45deg, rgba(21, 153, 87, .7), rgba(21, 87, 153, .7));
   position:absolute;
   width: 100vw;
@@ -433,10 +434,12 @@ input {
   top: 0px;
   left: 0px;
 }
-.contact_form{
+.contact_form {
   font-size: 18px;
   text-align: center;
   margin: 20px 0px 20px 0px;
+  background: white;
+  letter-spacing: 0.05em;
 }
 
 /* -- about -- */
@@ -447,7 +450,7 @@ input {
 }
 .about-coverimg {
 //  background: linear-gradient(-45deg, rgba(0, 121, 145, .7), rgba(120, 255, 214, .57));
-  background: linear-gradient(-45deg, rgba(255, 255, 255, .6), rgba(255, 239, 186, .5));
+//  background: linear-gradient(-45deg, rgba(255, 255, 255, .6), rgba(255, 239, 186, .5));
   position:absolute;
   width: 100vw;
   margin-left: calc(50% - 50vw);
@@ -462,10 +465,15 @@ input {
 }
 
 .about_letter{
-  
+  background:white;
+  letter-spacing: 0.05em;
 }
 
 /* -- FAQ -- */
+.faq {
+  background:white;
+  letter-spacing: 0.05em;
+}
 .f-a-q-mainimg {
   width: 100vw;
   margin-left: calc(50% - 50vw);
@@ -473,7 +481,7 @@ input {
 }
 .f-a-q-coverimg {
 //  background: linear-gradient(-45deg, rgba(0, 121, 145, .7), rgba(120, 255, 214, .57));
-  background: linear-gradient(-45deg, rgba(198, 255, 221, .4), rgba(251, 215, 134, .75));
+//  background: linear-gradient(-45deg, rgba(198, 255, 221, .4), rgba(251, 215, 134, .75));
   position:absolute;
   width: 100vw;
   margin-left: calc(50% - 50vw);
